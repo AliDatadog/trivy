@@ -78,7 +78,7 @@ func (a dpkgAnalyzer) parseDpkgInfoList(filePath string, scanner *bufio.Scanner)
 	}
 
 	return &analyzer.AnalysisResult{
-		SystemInstalledFiles: map[string][]string{strings.TrimSuffix(filepath.Base(filePath), ".list"): installedFiles},
+		SystemInstalledFiles: installedFiles,
 	}, nil
 }
 

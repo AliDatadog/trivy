@@ -344,20 +344,13 @@ func TestAnalyzerGroup_AnalyzeFile(t *testing.T) {
 								SrcName:    "musl",
 								SrcVersion: "1.1.24-r2",
 								Licenses:   []string{"MIT"},
-								SystemInstalledFiles: []string{
-									"lib/libc.musl-x86_64.so.1",
-									"lib/ld-musl-x86_64.so.1",
-								},
-								Arch: "x86_64",
 							},
 						},
 					},
 				},
-				SystemInstalledFiles: map[string][]string{
-					"musl-1.1.24-r2": {
-						"lib/libc.musl-x86_64.so.1",
-						"lib/ld-musl-x86_64.so.1",
-					},
+				SystemInstalledFiles: []string{
+					"lib/libc.musl-x86_64.so.1",
+					"lib/ld-musl-x86_64.so.1",
 				},
 			},
 		},

@@ -159,7 +159,7 @@ type AnalysisResult struct {
 	Misconfigurations    []types.Misconfiguration
 	Secrets              []types.Secret
 	Licenses             []types.LicenseFile
-	SystemInstalledFiles map[string][]string // A map of files installed by OS package manager indexed by package
+	SystemInstalledFiles []string // A list of files installed by OS package manager
 
 	// Digests contains SHA-256 digests of unpackaged files
 	// used to search for SBOM attestation.
@@ -175,8 +175,6 @@ type AnalysisResult struct {
 
 func NewAnalysisResult() *AnalysisResult {
 	result := new(AnalysisResult)
-	result.Files = map[types.HandlerType][]types.File{}
-	result.SystemInstalledFiles = map[string][]string{}
 	return result
 }
 
@@ -278,13 +276,7 @@ func (r *AnalysisResult) Merge(new *AnalysisResult) {
 	r.Misconfigurations = append(r.Misconfigurations, new.Misconfigurations...)
 	r.Secrets = append(r.Secrets, new.Secrets...)
 	r.Licenses = append(r.Licenses, new.Licenses...)
-
-	for packageRef, installedFiles := range new.SystemInstalledFiles {
-		if r.SystemInstalledFiles == nil {
-			r.SystemInstalledFiles = make(map[string][]string)
-		}
-		r.SystemInstalledFiles[packageRef] = append(r.SystemInstalledFiles[packageRef], installedFiles...)
-	}
+	r.SystemInstalledFiles = append(r.SystemInstalledFiles, new.SystemInstalledFiles...)
 
 	if new.BuildInfo != nil {
 		if r.BuildInfo == nil {
