@@ -47,7 +47,7 @@ func TestArtifact_Inspect(t *testing.T) {
 			},
 			putBlobExpectation: cache.ArtifactCachePutBlobExpectation{
 				Args: cache.ArtifactCachePutBlobArgs{
-					BlobID: "sha256:fc0c7d225197e1c103784139def1e34b642e8183cf54519cac79dd0cfdd19aba",
+					BlobID: "sha256:cf2a5e49b637ace9ca353f87d0d8d4405a2d86961ed6d703c4c1a2fb8b7fbf1e",
 					BlobInfo: types.BlobInfo{
 						SchemaVersion: types.BlobJSONSchemaVersion,
 						OS: types.OS{
@@ -59,12 +59,14 @@ func TestArtifact_Inspect(t *testing.T) {
 								FilePath: "lib/apk/db/installed",
 								Packages: []types.Package{
 									{
-										ID:         "musl@1.1.24-r2",
-										Name:       "musl",
-										Version:    "1.1.24-r2",
-										SrcName:    "musl",
-										SrcVersion: "1.1.24-r2",
-										Licenses:   []string{"MIT"},
+										ID:   "musl@1.1.24-r2",
+										Name: "musl", Version: "1.1.24-r2", SrcName: "musl", SrcVersion: "1.1.24-r2",
+										Licenses: []string{"MIT"},
+										SystemInstalledFiles: []string{
+											"lib/libc.musl-x86_64.so.1",
+											"lib/ld-musl-x86_64.so.1",
+										},
+										Arch: "x86_64",
 									},
 								},
 							},
@@ -76,9 +78,9 @@ func TestArtifact_Inspect(t *testing.T) {
 			want: types.ArtifactReference{
 				Name: "host",
 				Type: types.ArtifactFilesystem,
-				ID:   "sha256:fc0c7d225197e1c103784139def1e34b642e8183cf54519cac79dd0cfdd19aba",
+				ID:   "sha256:cf2a5e49b637ace9ca353f87d0d8d4405a2d86961ed6d703c4c1a2fb8b7fbf1e",
 				BlobIDs: []string{
-					"sha256:fc0c7d225197e1c103784139def1e34b642e8183cf54519cac79dd0cfdd19aba",
+					"sha256:cf2a5e49b637ace9ca353f87d0d8d4405a2d86961ed6d703c4c1a2fb8b7fbf1e",
 				},
 			},
 		},
@@ -119,7 +121,7 @@ func TestArtifact_Inspect(t *testing.T) {
 			},
 			putBlobExpectation: cache.ArtifactCachePutBlobExpectation{
 				Args: cache.ArtifactCachePutBlobArgs{
-					BlobID: "sha256:fc0c7d225197e1c103784139def1e34b642e8183cf54519cac79dd0cfdd19aba",
+					BlobID: "sha256:cf2a5e49b637ace9ca353f87d0d8d4405a2d86961ed6d703c4c1a2fb8b7fbf1e",
 					BlobInfo: types.BlobInfo{
 						SchemaVersion: types.BlobJSONSchemaVersion,
 						OS: types.OS{
@@ -131,12 +133,15 @@ func TestArtifact_Inspect(t *testing.T) {
 								FilePath: "lib/apk/db/installed",
 								Packages: []types.Package{
 									{
-										ID:         "musl@1.1.24-r2",
-										Name:       "musl",
-										Version:    "1.1.24-r2",
-										SrcName:    "musl",
-										SrcVersion: "1.1.24-r2",
-										Licenses:   []string{"MIT"},
+										ID:   "musl@1.1.24-r2",
+										Name: "musl", Version: "1.1.24-r2", SrcName: "musl", SrcVersion: "1.1.24-r2",
+										Licenses: []string{"MIT"},
+										SystemInstalledFiles: []string{
+											"lib/libc.musl-x86_64.so.1",
+											"lib/ld-musl-x86_64.so.1",
+										},
+										Arch: "x86_64",
+>>>>>>> lebauce/installed-files
 									},
 								},
 							},
