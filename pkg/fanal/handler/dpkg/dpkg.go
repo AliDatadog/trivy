@@ -17,10 +17,14 @@ func init() {
 
 const version = 1
 
-type dpkgHook struct{}
+type dpkgHook struct {
+	systemInstalledFiles bool
+}
 
-func newDpkgHandler(artifact.Option) (handler.PostHandler, error) {
-	return dpkgHook{}, nil
+func newDpkgHandler(a artifact.Option) (handler.PostHandler, error) {
+	return dpkgHook{
+		systemInstalledFiles: a.SystemInstalledFiles,
+	}, nil
 }
 
 // Handle merges go.mod and go.sum.
@@ -29,10 +33,12 @@ func (h dpkgHook) Handle(_ context.Context, r *analyzer.AnalysisResult, blob *ty
 		return nil
 	}
 
-	for i, pkgInfo := range r.PackageInfos {
-		for j, pkg := range pkgInfo.Packages {
-			if len(pkg.SystemInstalledFiles) == 0 {
-				r.PackageInfos[i].Packages[j].SystemInstalledFiles = r.SystemInstalledFiles
+	if h.systemInstalledFiles {
+		for i, pkgInfo := range r.PackageInfos {
+			for j, pkg := range pkgInfo.Packages {
+				if len(pkg.SystemInstalledFiles) == 0 {
+					r.PackageInfos[i].Packages[j].SystemInstalledFiles = r.SystemInstalledFiles
+				}
 			}
 		}
 	}
