@@ -41,17 +41,16 @@ type dpkgAnalyzer struct{}
 func (a dpkgAnalyzer) Analyze(_ context.Context, input analyzer.AnalysisInput) (*analyzer.AnalysisResult, error) {
 	scanner := bufio.NewScanner(input.Content)
 	if a.isListFile(filepath.Split(input.FilePath)) {
-		return a.parseDpkgInfoList(input.FilePath, scanner)
+		return a.parseDpkgInfoList(scanner)
 	}
 
 	return a.parseDpkgStatus(input.FilePath, scanner)
 }
 
 // parseDpkgStatus parses /var/lib/dpkg/info/*.list
-func (a dpkgAnalyzer) parseDpkgInfoList(filePath string, scanner *bufio.Scanner) (*analyzer.AnalysisResult, error) {
+func (a dpkgAnalyzer) parseDpkgInfoList(scanner *bufio.Scanner) (*analyzer.AnalysisResult, error) {
 	var installedFiles []string
 	var previous string
-
 	for scanner.Scan() {
 		current := scanner.Text()
 		if current == "/." {
