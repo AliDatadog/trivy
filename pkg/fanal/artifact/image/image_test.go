@@ -505,7 +505,6 @@ func TestArtifact_Inspect(t *testing.T) {
 									FilePath: "var/lib/dpkg/status.d/netbase",
 									Packages: []types.Package{
 											SrcName: "netbase", SrcVersion: "5.4", Maintainer: "Marco d'Itri <md@linux.it>", Arch: "all"},
->>>>>>> lebauce/installed-files
 									},
 								},
 								{

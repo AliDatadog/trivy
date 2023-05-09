@@ -110,11 +110,7 @@ func TestArtifact_Inspect(t *testing.T) {
 			filePath: "testdata/AmazonLinux2.img.gz",
 			putBlobExpectation: cache.ArtifactCachePutBlobExpectation{
 				Args: cache.ArtifactCachePutBlobArgs{
-<<<<<<< HEAD
-					BlobID: "sha256:4289951ca507f1d2e3e5428f018bde5e94684ee3f6e0aa7d72456b1283478178",
-=======
 					BlobID: "sha256:d583caa560597f02936de6b46cd1c10c56523e0ed641efc72ac369893321a616",
->>>>>>> lebauce/installed-files
 					BlobInfo: types.BlobInfo{
 						SchemaVersion: types.BlobJSONSchemaVersion,
 						OS: types.OS{
@@ -134,11 +130,7 @@ func TestArtifact_Inspect(t *testing.T) {
 			putArtifactExpectations: []cache.ArtifactCachePutArtifactExpectation{
 				{
 					Args: cache.ArtifactCachePutArtifactArgs{
-<<<<<<< HEAD
-						ArtifactID: "sha256:4289951ca507f1d2e3e5428f018bde5e94684ee3f6e0aa7d72456b1283478178",
-=======
 						ArtifactID: "sha256:d583caa560597f02936de6b46cd1c10c56523e0ed641efc72ac369893321a616",
->>>>>>> lebauce/installed-files
 						ArtifactInfo: types.ArtifactInfo{
 							SchemaVersion: types.ArtifactJSONSchemaVersion,
 						},
@@ -149,15 +141,9 @@ func TestArtifact_Inspect(t *testing.T) {
 			want: types.ArtifactReference{
 				Name: "testdata/AmazonLinux2.img.gz",
 				Type: types.ArtifactVM,
-<<<<<<< HEAD
-				ID:   "sha256:4289951ca507f1d2e3e5428f018bde5e94684ee3f6e0aa7d72456b1283478178",
-				BlobIDs: []string{
-					"sha256:4289951ca507f1d2e3e5428f018bde5e94684ee3f6e0aa7d72456b1283478178",
-=======
 				ID:   "sha256:d583caa560597f02936de6b46cd1c10c56523e0ed641efc72ac369893321a616",
 				BlobIDs: []string{
 					"sha256:d583caa560597f02936de6b46cd1c10c56523e0ed641efc72ac369893321a616",
->>>>>>> lebauce/installed-files
 				},
 			},
 			testInstalledFiles: true,

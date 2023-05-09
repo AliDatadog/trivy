@@ -141,7 +141,6 @@ func TestArtifact_Inspect(t *testing.T) {
 											"lib/ld-musl-x86_64.so.1",
 										},
 										Arch: "x86_64",
->>>>>>> lebauce/installed-files
 									},
 								},
 							},
