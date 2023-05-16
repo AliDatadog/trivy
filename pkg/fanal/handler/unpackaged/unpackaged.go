@@ -15,6 +15,7 @@ import (
 	"github.com/aquasecurity/trivy/pkg/fanal/types"
 	"github.com/aquasecurity/trivy/pkg/log"
 	"github.com/aquasecurity/trivy/pkg/sbom"
+	"github.com/samber/lo"
 )
 
 func init() {
@@ -39,9 +40,10 @@ func NewUnpackagedHandler(opt artifact.Option) (handler.PostHandler, error) {
 
 // Handle retrieves SBOM of unpackaged executable files in Rekor.
 func (h unpackagedHook) Handle(ctx context.Context, res *analyzer.AnalysisResult, blob *types.BlobInfo) error {
+	installedFiles := lo.FlatMap(lo.Values(res.SystemInstalledFiles), func(item []string, _ int) []string { return item })
 	for filePath, digest := range res.Digests {
 		// Skip files installed by OS package managers.
-		if slices.Contains(res.SystemInstalledFiles, filePath) {
+		if slices.Contains(installedFiles, filePath) {
 			continue
 		}
 
