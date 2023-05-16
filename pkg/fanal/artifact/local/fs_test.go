@@ -45,6 +45,7 @@ func TestArtifact_Inspect(t *testing.T) {
 			fields: fields{
 				dir: "./testdata/alpine",
 			},
+			artifactOpt: artifact.Option{KeepSystemInstalledFiles: true},
 			putBlobExpectation: cache.ArtifactCachePutBlobExpectation{
 				Args: cache.ArtifactCachePutBlobArgs{
 					BlobID: "sha256:8f8135f554103aaad1ca01aad648dd0603cebfc04cc20e6005eb2c13f820d9e6",
@@ -98,6 +99,7 @@ func TestArtifact_Inspect(t *testing.T) {
 					analyzer.TypeApk,
 					analyzer.TypePip,
 				},
+				KeepSystemInstalledFiles: true,
 			},
 			putBlobExpectation: cache.ArtifactCachePutBlobExpectation{
 				Args: cache.ArtifactCachePutBlobArgs{
@@ -122,6 +124,7 @@ func TestArtifact_Inspect(t *testing.T) {
 			fields: fields{
 				dir: "./testdata/alpine",
 			},
+			artifactOpt: artifact.Option{KeepSystemInstalledFiles: true},
 			putBlobExpectation: cache.ArtifactCachePutBlobExpectation{
 				Args: cache.ArtifactCachePutBlobArgs{
 					BlobID: "sha256:8f8135f554103aaad1ca01aad648dd0603cebfc04cc20e6005eb2c13f820d9e6",
@@ -250,9 +253,8 @@ func TestArtifact_Inspect(t *testing.T) {
 				require.NotNil(t, err)
 				assert.Contains(t, err.Error(), tt.wantErr)
 				return
-			} else {
-				require.NoError(t, err)
 			}
+			require.NoError(t, err)
 			assert.Equal(t, tt.want, got)
 		})
 	}

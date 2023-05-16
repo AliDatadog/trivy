@@ -3,14 +3,14 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "testdata/fixtures/fs/conda",
-  "documentNamespace": "http://aquasecurity.github.io/trivy/filesystem/testdata/fixtures/fs/conda-f50748fc-93cb-48c4-87c5-25a03e4ddb00",
+  "documentNamespace": "http://aquasecurity.github.io/trivy/filesystem/testdata/fixtures/fs/conda-ada4d7ca-a9e4-45cd-a944-8c1a61d6bda7",
   "creationInfo": {
     "licenseListVersion": "",
     "creators": [
       "Organization: aquasecurity",
       "Tool: trivy-dev"
     ],
-    "created": "2023-05-16T05:26:41Z"
+    "created": "2023-05-16T13:28:44Z"
   },
   "packages": [
     {
@@ -23,7 +23,7 @@
     },
     {
       "name": "openssl",
-      "SPDXID": "SPDXRef-Package-b1088cb4090e3a55",
+      "SPDXID": "SPDXRef-Package-26a67ed85f4880f5",
       "versionInfo": "1.1.1q",
       "supplier": "NOASSERTION",
       "downloadLocation": "NONE",
@@ -54,7 +54,7 @@
     },
     {
       "name": "pip",
-      "SPDXID": "SPDXRef-Package-6b677e82217fb5bd",
+      "SPDXID": "SPDXRef-Package-c213e159a8af29a6",
       "versionInfo": "22.2.2",
       "supplier": "NOASSERTION",
       "downloadLocation": "NONE",
@@ -107,12 +107,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Application-ee5ef1aa4ac89125",
-      "relatedSpdxElement": "SPDXRef-Package-b1088cb4090e3a55",
+      "relatedSpdxElement": "SPDXRef-Package-26a67ed85f4880f5",
       "relationshipType": "CONTAINS"
     },
     {
       "spdxElementId": "SPDXRef-Application-ee5ef1aa4ac89125",
-      "relatedSpdxElement": "SPDXRef-Package-6b677e82217fb5bd",
+      "relatedSpdxElement": "SPDXRef-Package-c213e159a8af29a6",
       "relationshipType": "CONTAINS"
     }
   ]

@@ -328,7 +328,8 @@ func TestArtifact_Inspect(t *testing.T) {
 			name:      "happy path",
 			imagePath: "../../test/testdata/alpine-311.tar.gz",
 			artifactOpt: artifact.Option{
-				LicenseScannerOption: analyzer.LicenseScannerOption{Full: true},
+				LicenseScannerOption:     analyzer.LicenseScannerOption{Full: true},
+				KeepSystemInstalledFiles: true,
 			},
 			missingBlobsExpectation: cache.ArtifactCacheMissingBlobsExpectation{
 				Args: cache.ArtifactCacheMissingBlobsArgs{
@@ -463,7 +464,8 @@ func TestArtifact_Inspect(t *testing.T) {
 			name:      "happy path: include lock files",
 			imagePath: "../../test/testdata/vuln-image.tar.gz",
 			artifactOpt: artifact.Option{
-				LicenseScannerOption: analyzer.LicenseScannerOption{Full: true},
+				LicenseScannerOption:     analyzer.LicenseScannerOption{Full: true},
+				KeepSystemInstalledFiles: true,
 			},
 			missingBlobsExpectation: cache.ArtifactCacheMissingBlobsExpectation{
 				Args: cache.ArtifactCacheMissingBlobsArgs{
@@ -1864,8 +1866,9 @@ func TestArtifact_Inspect(t *testing.T) {
 			wantErr: "MissingBlobs failed",
 		},
 		{
-			name:      "sad path, PutBlob returns an error",
-			imagePath: "../../test/testdata/alpine-311.tar.gz",
+			name:        "sad path, PutBlob returns an error",
+			imagePath:   "../../test/testdata/alpine-311.tar.gz",
+			artifactOpt: artifact.Option{KeepSystemInstalledFiles: true},
 			missingBlobsExpectation: cache.ArtifactCacheMissingBlobsExpectation{
 				Args: cache.ArtifactCacheMissingBlobsArgs{
 					ArtifactID: "sha256:c232b7d8ac8aa08aa767313d0b53084c4380d1c01a213a5971bdb039e6538313",

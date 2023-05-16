@@ -116,7 +116,7 @@ func Test_dpkgFileFilterHook_Hook(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			h, err := newDpkgHandler(artifact.Option{})
+			h, err := newDpkgHandler(artifact.Option{KeepSystemInstalledFiles: true})
 			require.NoError(t, err)
 			err = h.Handle(context.TODO(), tt.result, nil)
 			require.NoError(t, err)

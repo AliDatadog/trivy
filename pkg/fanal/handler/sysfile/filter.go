@@ -48,9 +48,10 @@ var (
 	}
 )
 
-type systemFileFilteringPostHandler struct{}
+type systemFileFilteringPostHandler struct {
+}
 
-func newSystemFileFilteringPostHandler(artifact.Option) (handler.PostHandler, error) {
+func newSystemFileFilteringPostHandler(a artifact.Option) (handler.PostHandler, error) {
 	return systemFileFilteringPostHandler{}, nil
 }
 

@@ -7,6 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
+	"github.com/aquasecurity/trivy/pkg/fanal/analyzer"
 	"github.com/aquasecurity/trivy/pkg/fanal/types"
 )
 
@@ -286,7 +287,7 @@ func TestParseApkInfo(t *testing.T) {
 			t.Errorf("%s : can't open file %s", testname, v.path)
 		}
 		scanner := bufio.NewScanner(read)
-		gotPkgs, gotFiles := a.parseApkInfo(scanner)
+		gotPkgs, gotFiles := a.parseApkInfo(scanner, &analyzer.AnalysisOptions{KeepSystemInstalledFiles: true})
 		for i, wantPkg := range v.wantPkgs {
 			if _, found := v.wantFiles[wantPkg.Name+"-"+wantPkg.Version]; found {
 				v.wantPkgs[i].SystemInstalledFiles = v.wantFiles[wantPkg.Name+"-"+wantPkg.Version]

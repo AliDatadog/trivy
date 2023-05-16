@@ -17,15 +17,19 @@ func init() {
 
 const version = 1
 
-type dpkgHook struct{}
+type dpkgHook struct {
+	keepSystemInstalledFiles bool
+}
 
-func newDpkgHandler(artifact.Option) (handler.PostHandler, error) {
-	return dpkgHook{}, nil
+func newDpkgHandler(a artifact.Option) (handler.PostHandler, error) {
+	return dpkgHook{
+		keepSystemInstalledFiles: a.KeepSystemInstalledFiles,
+	}, nil
 }
 
 // Handle merges adds installed files to analysis result package info.
 func (h dpkgHook) Handle(_ context.Context, r *analyzer.AnalysisResult, _ *types.BlobInfo) error {
-	if r.OS.Family != os.Debian && r.OS.Family != os.Ubuntu {
+	if !h.keepSystemInstalledFiles || r.OS.Family != os.Debian && r.OS.Family != os.Ubuntu {
 		return nil
 	}
 	for i, pkgInfo := range r.PackageInfos {

@@ -41,6 +41,8 @@ type Option struct {
 
 	// File walk
 	WalkOption WalkOption
+
+	KeepSystemInstalledFiles bool
 }
 
 // WalkOption is a struct that allows users to define a custom walking behavior.
