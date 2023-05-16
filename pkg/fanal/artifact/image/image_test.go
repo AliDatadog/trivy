@@ -46,6 +46,35 @@ func TestArtifact_Inspect(t *testing.T) {
 				"busybox@1.31.1-r9",
 				"musl@1.1.24-r2",
 			},
+			SystemInstalledFiles: []string{
+				"etc/hosts",
+				"etc/sysctl.conf",
+				"etc/group",
+				"etc/protocols",
+				"etc/fstab",
+				"etc/mtab",
+				"etc/profile",
+				"etc/shells",
+				"etc/motd",
+				"etc/inittab",
+				"etc/hostname",
+				"etc/modules",
+				"etc/services",
+				"etc/shadow",
+				"etc/passwd",
+				"etc/profile.d/locale",
+				"etc/profile.d/color_prompt",
+				"etc/sysctl.d/00-alpine.conf",
+				"etc/modprobe.d/i386.conf",
+				"etc/modprobe.d/blacklist.conf",
+				"etc/modprobe.d/aliases.conf",
+				"etc/modprobe.d/kms.conf",
+				"etc/crontabs/root",
+				"sbin/mkmntdirs",
+				"var/run",
+				"var/spool/mail",
+				"var/spool/cron/crontabs",
+			},
 		},
 		{
 			ID:         "alpine-keys@2.1-r2",
@@ -55,6 +84,26 @@ func TestArtifact_Inspect(t *testing.T) {
 			SrcVersion: "2.1-r2",
 			Licenses:   []string{"MIT"},
 			Digest:     "sha1:64929f85b7f8b4adbb664d905410312936b79d9b",
+			SystemInstalledFiles: []string{
+				"etc/apk/keys/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+				"etc/apk/keys/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+				"etc/apk/keys/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+				"usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+				"usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+				"usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+				"usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58cbb476.rsa.pub",
+				"usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+				"usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+				"usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58e4f17d.rsa.pub",
+				"usr/share/apk/keys/aarch64/alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+				"usr/share/apk/keys/ppc64le/alpine-devel@lists.alpinelinux.org-58cbb476.rsa.pub",
+				"usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+				"usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+				"usr/share/apk/keys/s390x/alpine-devel@lists.alpinelinux.org-58e4f17d.rsa.pub",
+				"usr/share/apk/keys/armhf/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+				"usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+				"usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+			},
 		},
 		{
 			ID:         "apk-tools@2.10.4-r3",
@@ -70,6 +119,9 @@ func TestArtifact_Inspect(t *testing.T) {
 				"musl@1.1.24-r2",
 				"zlib@1.2.11-r3",
 			},
+			SystemInstalledFiles: []string{
+				"sbin/apk",
+			},
 		},
 		{
 			ID:         "busybox@1.31.1-r9",
@@ -82,6 +134,15 @@ func TestArtifact_Inspect(t *testing.T) {
 			DependsOn: []string{
 				"musl@1.1.24-r2",
 			},
+			SystemInstalledFiles: []string{
+				"bin/busybox",
+				"bin/sh",
+				"etc/securetty",
+				"etc/udhcpd.conf",
+				"etc/logrotate.d/acpid",
+				"etc/network/if-up.d/dad",
+				"usr/share/udhcpc/default.script",
+			},
 		},
 		{
 			ID:         "ca-certificates-cacert@20191127-r1",
@@ -93,7 +154,8 @@ func TestArtifact_Inspect(t *testing.T) {
 				"MPL-2.0",
 				"GPL-2.0",
 			},
-			Digest: "sha1:3aeb8a90d7179d2a187782e980a964494e08c5fb",
+			Digest:               "sha1:3aeb8a90d7179d2a187782e980a964494e08c5fb",
+			SystemInstalledFiles: []string{"etc/ssl/cert.pem"},
 		},
 		{
 			ID:         "libc-utils@0.7.2-r0",
@@ -106,6 +168,7 @@ func TestArtifact_Inspect(t *testing.T) {
 			DependsOn: []string{
 				"musl-utils@1.1.24-r2",
 			},
+			SystemInstalledFiles: []string{},
 		},
 		{
 			ID:         "libcrypto1.1@1.1.1d-r3",
@@ -117,6 +180,20 @@ func TestArtifact_Inspect(t *testing.T) {
 			Digest:     "sha1:dd8fb9a3cce7b2bcf954271da62fb85dac2b106a",
 			DependsOn: []string{
 				"musl@1.1.24-r2",
+			},
+			SystemInstalledFiles: []string{
+				"etc/ssl/openssl.cnf.dist",
+				"etc/ssl/ct_log_list.cnf",
+				"etc/ssl/ct_log_list.cnf.dist",
+				"etc/ssl/openssl.cnf",
+				"etc/ssl/misc/CA.pl",
+				"etc/ssl/misc/tsget.pl",
+				"etc/ssl/misc/tsget",
+				"lib/libcrypto.so.1.1",
+				"usr/lib/libcrypto.so.1.1",
+				"usr/lib/engines-1.1/capi.so",
+				"usr/lib/engines-1.1/padlock.so",
+				"usr/lib/engines-1.1/afalg.so",
 			},
 		},
 		{
@@ -130,6 +207,10 @@ func TestArtifact_Inspect(t *testing.T) {
 			DependsOn: []string{
 				"libcrypto1.1@1.1.1d-r3",
 				"musl@1.1.24-r2",
+			},
+			SystemInstalledFiles: []string{
+				"lib/libssl.so.1.1",
+				"usr/lib/libssl.so.1.1",
 			},
 		},
 		{
@@ -146,6 +227,10 @@ func TestArtifact_Inspect(t *testing.T) {
 				"libssl1.1@1.1.1d-r3",
 				"musl@1.1.24-r2",
 			},
+			SystemInstalledFiles: []string{
+				"usr/lib/libtls-standalone.so.1.0.0",
+				"usr/lib/libtls-standalone.so.1",
+			},
 		},
 		{
 			ID:         "musl@1.1.24-r2",
@@ -155,6 +240,10 @@ func TestArtifact_Inspect(t *testing.T) {
 			SrcVersion: "1.1.24-r2",
 			Licenses:   []string{"MIT"},
 			Digest:     "sha1:cb2316a189ebee5282c4a9bd98794cc2477a74c6",
+			SystemInstalledFiles: []string{
+				"lib/libc.musl-x86_64.so.1",
+				"lib/ld-musl-x86_64.so.1",
+			},
 		},
 		{
 			ID:         "musl-utils@1.1.24-r2",
@@ -172,6 +261,13 @@ func TestArtifact_Inspect(t *testing.T) {
 				"musl@1.1.24-r2",
 				"scanelf@1.2.4-r0",
 			},
+			SystemInstalledFiles: []string{
+				"sbin/ldconfig",
+				"usr/bin/iconv",
+				"usr/bin/ldd",
+				"usr/bin/getconf",
+				"usr/bin/getent",
+			},
 		},
 		{
 			ID:         "scanelf@1.2.4-r0",
@@ -184,6 +280,7 @@ func TestArtifact_Inspect(t *testing.T) {
 			DependsOn: []string{
 				"musl@1.1.24-r2",
 			},
+			SystemInstalledFiles: []string{"usr/bin/scanelf"},
 		},
 		{
 			ID:         "ssl_client@1.31.1-r9",
@@ -197,6 +294,7 @@ func TestArtifact_Inspect(t *testing.T) {
 				"libtls-standalone@2.9.1-r0",
 				"musl@1.1.24-r2",
 			},
+			SystemInstalledFiles: []string{"usr/bin/ssl_client"},
 		},
 		{
 			ID:         "zlib@1.2.11-r3",
@@ -208,6 +306,10 @@ func TestArtifact_Inspect(t *testing.T) {
 			Digest:     "sha1:acca078ee8baa93e005f57b2fae359c1efd443cd",
 			DependsOn: []string{
 				"musl@1.1.24-r2",
+			},
+			SystemInstalledFiles: []string{
+				"lib/libz.so.1.2.11",
+				"lib/libz.so.1",
 			},
 		},
 	}
