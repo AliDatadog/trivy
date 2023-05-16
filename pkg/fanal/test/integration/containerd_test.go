@@ -243,7 +243,7 @@ func TestContainerd_SearchLocalStoreByNameOrDigest(t *testing.T) {
 			}
 			require.NoError(t, err)
 
-			ar, err := aimage.NewArtifact(img, c, artifact.Option{})
+			ar, err := aimage.NewArtifact(img, c, artifact.Option{KeepSystemInstalledFiles: true})
 			require.NoError(t, err)
 
 			ref, err := ar.Inspect(ctx)
@@ -691,6 +691,7 @@ func localImageTestWithNamespace(t *testing.T, namespace string) {
 					analyzer.TypeExecutable,
 					analyzer.TypeLicenseFile,
 				},
+				KeepSystemInstalledFile: true,
 			})
 			require.NoError(t, err)
 
@@ -827,6 +828,7 @@ func TestContainerd_PullImage(t *testing.T) {
 					analyzer.TypeExecutable,
 					analyzer.TypeLicenseFile,
 				},
+				KeepSystemInstalledFiles: true,
 			})
 			require.NoError(t, err)
 			require.NotNil(t, art)

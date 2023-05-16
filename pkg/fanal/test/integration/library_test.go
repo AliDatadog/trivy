@@ -163,6 +163,7 @@ func TestFanal_Library_DockerLessMode(t *testing.T) {
 					analyzer.TypeExecutable,
 					analyzer.TypeLicenseFile,
 				},
+				KeepSystemInstalledFiles: true,
 			})
 			require.NoError(t, err)
 
@@ -218,6 +219,7 @@ func TestFanal_Library_DockerMode(t *testing.T) {
 					analyzer.TypeExecutable,
 					analyzer.TypeLicenseFile,
 				},
+				KeepSystemInstalledFiles: true,
 			})
 			require.NoError(t, err)
 
@@ -257,6 +259,7 @@ func TestFanal_Library_TarMode(t *testing.T) {
 					analyzer.TypeExecutable,
 					analyzer.TypeLicenseFile,
 				},
+				KeepSystemInstalledFiles: true,
 			})
 			require.NoError(t, err)
 

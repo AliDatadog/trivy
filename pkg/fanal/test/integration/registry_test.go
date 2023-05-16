@@ -239,6 +239,7 @@ func analyze(ctx context.Context, imageRef string, opt types.ImageOptions) (*typ
 			analyzer.TypeExecutable,
 			analyzer.TypeLicenseFile,
 		},
+		KeepSystemInstalledFiles: true,
 	})
 	if err != nil {
 		return nil, err
