@@ -349,9 +349,11 @@ func TestAnalyzerGroup_AnalyzeFile(t *testing.T) {
 						},
 					},
 				},
-				SystemInstalledFiles: []string{
-					"lib/libc.musl-x86_64.so.1",
-					"lib/ld-musl-x86_64.so.1",
+				SystemInstalledFiles: map[string][]string{
+					"musl-1.1.24-r2": {
+						"lib/libc.musl-x86_64.so.1",
+						"lib/ld-musl-x86_64.so.1",
+					},
 				},
 			},
 		},

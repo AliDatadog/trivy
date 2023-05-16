@@ -159,7 +159,7 @@ type AnalysisResult struct {
 	Misconfigurations    []types.Misconfiguration
 	Secrets              []types.Secret
 	Licenses             []types.LicenseFile
-	SystemInstalledFiles []string // A list of files installed by OS package manager
+	SystemInstalledFiles map[string][]string // Map of files installed by OS package manager indexed by package
 
 	// Digests contains SHA-256 digests of unpackaged files
 	// used to search for SBOM attestation.
@@ -276,7 +276,7 @@ func (r *AnalysisResult) Merge(new *AnalysisResult) {
 	r.Misconfigurations = append(r.Misconfigurations, new.Misconfigurations...)
 	r.Secrets = append(r.Secrets, new.Secrets...)
 	r.Licenses = append(r.Licenses, new.Licenses...)
-	r.SystemInstalledFiles = append(r.SystemInstalledFiles, new.SystemInstalledFiles...)
+	r.SystemInstalledFiles = lo.Assign(r.SystemInstalledFiles, new.SystemInstalledFiles)
 
 	if new.BuildInfo != nil {
 		if r.BuildInfo == nil {
@@ -473,8 +473,8 @@ func (ag AnalyzerGroup) PostAnalyze(ctx context.Context, files *syncx.Map[Type, 
 		if !ok {
 			continue
 		}
-
-		filteredFS, err := fsys.Filter(result.SystemInstalledFiles)
+		installedFiles := lo.FlatMap(lo.Values(result.SystemInstalledFiles), func(item []string, _ int) []string { return item })
+		filteredFS, err := fsys.Filter(installedFiles)
 		if err != nil {
 			return xerrors.Errorf("unable to filter filesystem: %w", err)
 		}
