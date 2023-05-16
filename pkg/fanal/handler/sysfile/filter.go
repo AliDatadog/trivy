@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/aquasecurity/trivy/pkg/fanal/artifact"
+	"github.com/samber/lo"
 
 	"golang.org/x/exp/slices"
 
@@ -56,7 +57,8 @@ func newSystemFileFilteringPostHandler(artifact.Option) (handler.PostHandler, er
 // Handle removes files installed by OS package manager such as yum.
 func (h systemFileFilteringPostHandler) Handle(_ context.Context, result *analyzer.AnalysisResult, blob *types.BlobInfo) error {
 	var systemFiles []string
-	for _, file := range append(result.SystemInstalledFiles, defaultSystemFiles...) {
+	installedFiles := lo.FlatMap(lo.Values(result.SystemInstalledFiles), func(item []string, _ int) []string { return item })
+	for _, file := range append(installedFiles, defaultSystemFiles...) {
 		// Trim leading slashes to be the same format as the path in container images.
 		systemFile := strings.TrimPrefix(file, "/")
 		// We should check the root filepath ("/") and ignore it.
